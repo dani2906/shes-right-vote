@@ -9,7 +9,7 @@ Live at **https://dani2906.github.io/shes-right-vote/**
 - Live results (points, average place, first-place picks, and every voter's ranking and note):
   `https://dani2906.github.io/shes-right-vote/?results=YOUR_KEY`
 
-Until the sheet is connected, the page falls back to **Copy my ranking**, and voters send their result as a message.
+The page is connected to the sheet. **Copy my ranking** stays available as a backup.
 
 ## Connect the Google Sheet (one time)
 
