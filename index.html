@@ -159,6 +159,26 @@ details.tally[open] summary::before { content: "–"; }
     <p class="lede">Six versions of the same screen. Tap them in order, from your favorite to your least favorite. Tap a screen again to take it back.</p>
   </header>
 
+  <section class="panel" id="ownerResults" hidden aria-labelledby="ownerTitle">
+    <div class="row" style="justify-content: space-between">
+      <h2 id="ownerTitle">Live results</h2>
+      <button class="btn ghost" id="refreshBtn" type="button">Refresh</button>
+    </div>
+    <p class="status" id="ownerStatus">Loading votes from your sheet…</p>
+    <div class="table-wrap" id="ownerOut" hidden>
+      <table class="results">
+        <thead><tr><th>Design</th><th class="num">Points</th><th class="num">Avg. place</th><th class="num">1st picks</th><th style="width: 30%" aria-label="Share of top score"></th></tr></thead>
+        <tbody id="ownerBody"></tbody>
+      </table>
+    </div>
+    <div class="table-wrap" id="votersOut" hidden>
+      <table class="results">
+        <thead><tr><th>Voter</th><th>Ranking, best first</th><th>Note</th></tr></thead>
+        <tbody id="votersBody"></tbody>
+      </table>
+    </div>
+  </section>
+
   <div class="bar" role="status" aria-live="polite">
     <div class="slots" id="slots"></div>
     <div class="row">
@@ -181,10 +201,12 @@ details.tally[open] summary::before { content: "–"; }
       </label>
     </div>
     <div class="row">
+      <button class="btn" id="submitBtn" type="button" disabled hidden>Submit my vote</button>
       <button class="btn" id="copyBtn" type="button" disabled>Copy my ranking</button>
       <button class="btn ghost" id="resetBtn2" type="button">Start over</button>
       <span class="status" id="copyStatus">Rank all six to finish.</span>
     </div>
+    <p class="status" id="saveNote" hidden>Your ranking, name and note go to the organizer's private Google Sheet. Submitting again replaces your earlier vote.</p>
     <pre class="result" id="resultText" hidden></pre>
     <p class="status" id="sendHint" hidden>Paste it in a message to whoever sent you this link.</p>
 
@@ -337,9 +359,17 @@ function render() {
 
   const done = order.length === DESIGNS.length;
   $("copyBtn").disabled = !done;
-  $("copyStatus").textContent = done ? "Ready to send." : "Rank all six to finish (" + (DESIGNS.length - order.length) + " to go).";
-  $("resultText").hidden = !done;
-  $("sendHint").hidden = !done;
+  $("submitBtn").disabled = !done;
+  const voted = store.get("sr-voted");
+  if (sheetOn) {
+    $("copyStatus").textContent = done
+      ? (voted === order.map(id => byId[id].letter).join("") ? "Your vote is in." : "Ready to submit.")
+      : "Rank all six to finish (" + (DESIGNS.length - order.length) + " to go).";
+  } else {
+    $("copyStatus").textContent = done ? "Ready to send." : "Rank all six to finish (" + (DESIGNS.length - order.length) + " to go).";
+  }
+  $("resultText").hidden = !done || sheetOn;
+  $("sendHint").hidden = !done || sheetOn;
   if (done) $("resultText").textContent = resultText();
   store.set("sr-vote-order", order.join(","));
 
@@ -381,12 +411,26 @@ function closeModal() { $("modal").hidden = true; modalId = null; }
 function countVotes() {
   const raw = $("tallyInput").value;
   const codes = [...raw.matchAll(/SR:([A-Z]{6})\b/g)].map(m => m[1]);
-  const valid = codes.filter(c => { const s = new Set(c.split("")); return s.size === 6 && [...s].every(l => byLetter[l]); });
+  const valid = codes.filter(validCode);
   if (!valid.length) {
     $("tallyOut").hidden = true;
     $("tallyStatus").textContent = codes.length ? "Those codes don't look right. Each should have all six letters once." : "No vote codes found. Each vote ends with a line like SR:DCOABE.";
     return;
   }
+  renderTally(valid, $("tallyBody"));
+  $("tallyOut").hidden = false;
+  const skipped = codes.length - valid.length;
+  $("tallyStatus").textContent = valid.length + (valid.length === 1 ? " vote" : " votes") + " counted" + (skipped ? ", " + skipped + " skipped (incomplete code)" : "") + ".";
+}
+
+function validCode(c) {
+  if (typeof c !== "string" || c.length !== DESIGNS.length) return false;
+  const s = new Set(c.split(""));
+  return s.size === DESIGNS.length && [...s].every(l => byLetter[l]);
+}
+
+// Points: 6 for 1st place down to 1 for 6th. Ties broken by 1st-place picks.
+function renderTally(valid, body) {
   const stats = Object.fromEntries(DESIGNS.map(d => [d.letter, { pts: 0, places: 0, firsts: 0 }]));
   valid.forEach(c => c.split("").forEach((l, i) => {
     stats[l].pts += DESIGNS.length - i;
@@ -395,7 +439,6 @@ function countVotes() {
   }));
   const rows = DESIGNS.map(d => ({ d, ...stats[d.letter] })).sort((a, b) => b.pts - a.pts || b.firsts - a.firsts);
   const top = rows[0].pts || 1;
-  const body = $("tallyBody");
   body.textContent = "";
   rows.forEach(r => {
     const tr = document.createElement("tr");
@@ -409,16 +452,101 @@ function countVotes() {
     track.appendChild(fill); barTd.appendChild(track);
     tr.append(name, pts, avg, fst, barTd); body.appendChild(tr);
   });
-  $("tallyOut").hidden = false;
-  const skipped = codes.length - valid.length;
-  $("tallyStatus").textContent = valid.length + (valid.length === 1 ? " vote" : " votes") + " counted" + (skipped ? ", " + skipped + " skipped (incomplete code)" : "") + ".";
+}
+
+// ---- Google Sheet connection (GitHub Pages version only) ----
+const SHEET_URL = "";
+const sheetOn = /^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(SHEET_URL);
+
+function voterId() {
+  let id = store.get("sr-voter-id");
+  if (!id || !/^[a-z0-9]{12,40}$/.test(id)) {
+    id = Array.from(crypto.getRandomValues(new Uint8Array(12)), b => (b % 36).toString(36)).join("");
+    store.set("sr-voter-id", id);
+  }
+  return id;
+}
+
+async function submitVote() {
+  if (order.length !== DESIGNS.length) return;
+  const btn = $("submitBtn");
+  btn.disabled = true;
+  $("copyStatus").textContent = "Sending…";
+  const payload = {
+    voter: voterId(),
+    code: order.map(id => byId[id].letter).join(""),
+    name: $("voterName").value.trim().slice(0, 80),
+    note: $("voterNote").value.trim().slice(0, 500)
+  };
+  try {
+    const res = await fetch(SHEET_URL, { method: "POST", body: JSON.stringify(payload) });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || "rejected");
+    store.set("sr-voted", payload.code);
+    $("copyStatus").textContent = "Thanks, your vote is in. Change your ranking and submit again to update it.";
+    btn.textContent = "Update my vote";
+  } catch (e) {
+    $("copyStatus").textContent = "Couldn't send your vote. Check your connection and try again, or copy your ranking and send it as a message.";
+  } finally {
+    btn.disabled = order.length !== DESIGNS.length;
+  }
+}
+
+async function loadOwnerResults(key) {
+  const status = $("ownerStatus");
+  status.textContent = "Loading votes from your sheet…";
+  try {
+    const res = await fetch(SHEET_URL + "?key=" + encodeURIComponent(key));
+    const data = await res.json();
+    if (!data.ok) {
+      status.textContent = data.error === "not_allowed" ? "That results key doesn't match the one in your Apps Script." : "The sheet answered with an error: " + (data.error || "unknown") + ".";
+      $("ownerOut").hidden = true; $("votersOut").hidden = true;
+      return;
+    }
+    const votes = (data.votes || []).filter(v => validCode(v.code));
+    if (!votes.length) {
+      status.textContent = "No votes yet. Share the link without the ?results part.";
+      $("ownerOut").hidden = true; $("votersOut").hidden = true;
+      return;
+    }
+    renderTally(votes.map(v => v.code), $("ownerBody"));
+    const vb = $("votersBody");
+    vb.textContent = "";
+    votes.slice().sort((a, b) => String(b.updated).localeCompare(String(a.updated))).forEach(v => {
+      const tr = document.createElement("tr");
+      const who = document.createElement("td"); who.textContent = v.name || "Anonymous"; who.style.fontWeight = "700";
+      const rank = document.createElement("td"); rank.textContent = v.code.split("").map((l, i) => (i + 1) + "." + l).join("  ");
+      rank.style.fontVariantNumeric = "tabular-nums"; rank.style.whiteSpace = "nowrap";
+      const note = document.createElement("td"); note.textContent = v.note || "";
+      tr.append(who, rank, note); vb.appendChild(tr);
+    });
+    $("ownerOut").hidden = false; $("votersOut").hidden = false;
+    status.textContent = votes.length + (votes.length === 1 ? " vote" : " votes") + ". Letters: " + DESIGNS.map(d => d.letter + " = " + d.name).join(", ") + ".";
+  } catch (e) {
+    status.textContent = "Couldn't reach your sheet. Check that the Apps Script is deployed with access set to Anyone.";
+  }
 }
 
 buildGrid();
 const savedOrder = (store.get("sr-vote-order") || "").split(",").filter(id => byId[id]);
 order = [...new Set(savedOrder)];
+
+if (sheetOn) {
+  $("submitBtn").hidden = false;
+  $("saveNote").hidden = false;
+  $("copyBtn").classList.add("ghost");
+  if (store.get("sr-voted")) $("submitBtn").textContent = "Update my vote";
+  $("tally").hidden = true;
+  const key = new URLSearchParams(location.search).get("results");
+  if (key) {
+    $("ownerResults").hidden = false;
+    loadOwnerResults(key);
+    $("refreshBtn").addEventListener("click", () => loadOwnerResults(key));
+  }
+}
 render();
 
+$("submitBtn").addEventListener("click", submitVote);
 $("resetBtn").addEventListener("click", () => { order = []; render(); });
 $("resetBtn2").addEventListener("click", () => { order = []; render(); window.scrollTo({ top: 0 }); });
 $("copyBtn").addEventListener("click", copyResult);
