@@ -57,6 +57,16 @@ p { margin: 0; }
 .lede { color: var(--muted); font-size: 17px; max-width: 60ch; }
 header { display: flex; flex-direction: column; gap: 12px; }
 
+.about { display: flex; gap: 20px; align-items: flex-start; padding: 22px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; }
+.about-orb { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; margin-top: 2px; background: radial-gradient(circle at 35% 30%, #FFE08A 0%, #F2C14E 55%, #D99A2B 100%); box-shadow: 0 0 24px rgba(242, 193, 78, 0.55); }
+.about-text { display: flex; flex-direction: column; gap: 10px; min-width: 0; max-width: 68ch; }
+.about-text h2 { font-size: 22px; }
+.about-text p, .about-text li { font-size: 15px; line-height: 1.55; color: var(--muted); }
+.about-text strong { color: var(--fg); }
+.about-text ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+.about-tag { font-family: var(--display); font-weight: 600; color: var(--fg) !important; }
+@media (max-width: 640px) { .about { padding: 18px; gap: 14px; } .about-orb { width: 32px; height: 32px; } }
+
 .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
   padding: 12px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
 .slots { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -158,6 +168,20 @@ details.tally[open] summary::before { content: "–"; }
     <h1>Which look should the app go with?</h1>
     <p class="lede">Six versions of the same screen. Tap them in order, from your favorite to your least favorite. Tap a screen again to take it back.</p>
   </header>
+
+  <aside class="about" aria-labelledby="aboutTitle">
+    <div class="about-orb" aria-hidden="true"></div>
+    <div class="about-text">
+      <h2 id="aboutTitle">About the app</h2>
+      <p><strong>She's Right</strong> is an app for guys who want to be better partners. It turns her cycle into a simple daily forecast, like clear skies, storm watch, or rainy days, so he knows when to plan a date, when to pick up the slack, and what she might need.</p>
+      <ul>
+        <li>She sets it up herself and chooses what he sees. Everything stays on his phone.</li>
+        <li>Each day shows the real phase and one practical idea, from a quiet night in to the right gift.</li>
+        <li>Reminders for her birthday and your anniversary, with time to plan.</li>
+      </ul>
+      <p class="about-tag">She's right. Period.</p>
+    </div>
+  </aside>
 
   <section class="panel" id="ownerResults" hidden aria-labelledby="ownerTitle">
     <div class="row" style="justify-content: space-between">
