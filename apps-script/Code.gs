@@ -1,3 +1,5 @@
+/** @OnlyCurrentDoc */
+
 /**
  * She's Right design vote: Google Apps Script backend.
  *
