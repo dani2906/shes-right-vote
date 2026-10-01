@@ -501,15 +501,29 @@ async function submitVote() {
     name: $("voterName").value.trim().slice(0, 80),
     note: $("voterNote").value.trim().slice(0, 500)
   };
-  try {
-    const res = await fetch(SHEET_URL, { method: "POST", body: JSON.stringify(payload) });
-    const data = await res.json();
-    if (!data.ok) throw new Error(data.error || "rejected");
+  const body = JSON.stringify(payload);
+  const done = () => {
     store.set("sr-voted", payload.code);
     $("copyStatus").textContent = "Thanks, your vote is in. Change your ranking and submit again to update it.";
     btn.textContent = "Update my vote";
+  };
+  try {
+    let res;
+    try {
+      res = await fetch(SHEET_URL, { method: "POST", body });
+    } catch (netErr) {
+      // Some browsers block reading Google's reply. Each voter has one row,
+      // so sending again without reading the reply can't create duplicates.
+      await fetch(SHEET_URL, { method: "POST", body, mode: "no-cors" });
+      done();
+      return;
+    }
+    let data = null;
+    try { data = await res.json(); } catch (e) { throw new Error("unexpected reply (HTTP " + res.status + ")"); }
+    if (!data.ok) throw new Error(data.error || "rejected");
+    done();
   } catch (e) {
-    $("copyStatus").textContent = "Couldn't send your vote. Check your connection and try again, or copy your ranking and send it as a message.";
+    $("copyStatus").textContent = "Couldn't send your vote (" + (e && e.message ? e.message : "network error") + "). Try again, or copy your ranking and send it as a message.";
   } finally {
     btn.disabled = order.length !== DESIGNS.length;
   }
