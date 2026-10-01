@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="She's Right Design Vote">
+<meta property="og:description" content="Rank six versions of the She's Right Today screen.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>She's Right Design Vote</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,600&family=DM+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: a neutral review table. The six screens are the only color on the page; the chrome stays quiet so nothing biases the vote. */
+:root {
+  --bg: #ECEAE6;
+  --surface: #FFFFFF;
+  --fg: #1B1C1F;
+  --muted: #5C5E65;
+  --line: #D4D1CB;
+  --accent: #B5501A;
+  --on-accent: #FFFFFF;
+  --chip: #F4F2EE;
+  --shadow: 0 1px 2px rgba(27, 28, 31, 0.06), 0 8px 24px rgba(27, 28, 31, 0.08);
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Manrope", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141518; --surface: #1D1F23; --fg: #EDEBE6; --muted: #A4A7AE; --line: #30333A;
+    --accent: #F2A04A; --on-accent: #1B1C1F; --chip: #25282D;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141518; --surface: #1D1F23; --fg: #EDEBE6; --muted: #A4A7AE; --line: #30333A;
+  --accent: #F2A04A; --on-accent: #1B1C1F; --chip: #25282D;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
+
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 32px 64px; display: flex; flex-direction: column; gap: 32px; }
+h1, h2 { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(32px, 6vw, 52px); line-height: 1.02; }
+h2 { font-size: 26px; line-height: 1.1; }
+p { margin: 0; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.lede { color: var(--muted); font-size: 17px; max-width: 60ch; }
+header { display: flex; flex-direction: column; gap: 12px; }
+
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+.slots { display: flex; gap: 6px; flex-wrap: wrap; }
+.slot { width: 34px; height: 34px; border-radius: 10px; border: 1.5px dashed var(--line); display: grid; place-items: center; font-weight: 700; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.slot.filled { border-style: solid; border-color: var(--fg); background: var(--fg); color: var(--bg); }
+.bar-text { font-size: 14px; color: var(--muted); }
+.bar-text strong { color: var(--fg); }
+
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+@media (max-width: 860px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } }
+
+.card { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.frame { position: relative; width: 100%; aspect-ratio: 390 / 844; max-width: 100%; border-radius: 22px; overflow: hidden; background: #111; box-shadow: var(--shadow); outline: 3px solid transparent; outline-offset: 3px; transition: outline-color 0.15s ease, transform 0.15s ease; }
+.card.ranked .frame { outline-color: var(--accent); }
+.screen { position: absolute; left: 0; top: 0; width: 390px; height: 844px; transform-origin: 0 0; transform: scale(var(--s, 0.6)); pointer-events: none; line-height: normal; font-size: 16px; text-align: left; letter-spacing: normal; }
+.screen button, .screen a { font-family: inherit; }
+.pick { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background: transparent; cursor: pointer; border-radius: 22px; }
+.pick:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.card:not(.ranked) .pick:hover + .hint { opacity: 1; }
+.hint { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); padding: 8px 14px; border-radius: 999px; background: rgba(17, 17, 17, 0.82); color: #fff; font-size: 13px; font-weight: 600; opacity: 0; transition: opacity 0.15s; pointer-events: none; white-space: nowrap; }
+.rank[hidden] { display: none !important; }
+.rank { position: absolute; bottom: 14%; right: 12px; width: 52px; height: 52px; border-radius: 26px; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 26px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); pointer-events: none; font-variant-numeric: tabular-nums; }
+.meta { display: flex; gap: 10px; align-items: flex-start; }
+.letter { flex-shrink: 0; width: 30px; height: 30px; border-radius: 8px; background: var(--chip); border: 1px solid var(--line); display: grid; place-items: center; font-weight: 800; font-size: 14px; }
+.meta-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.name { font-weight: 700; font-size: 16px; }
+.blurb { font-size: 14px; color: var(--muted); }
+.zoom { flex-shrink: 0; min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); font: 600 13px var(--body); cursor: pointer; }
+.zoom:hover { border-color: var(--fg); }
+@media (max-width: 640px) {
+  .wrap { padding-inline: 16px; gap: 24px; }
+  .bar { padding: 10px 12px; gap: 8px; flex-wrap: nowrap; }
+  .slots { gap: 4px; flex-wrap: nowrap; }
+  .slot { width: 28px; height: 28px; border-radius: 8px; font-size: 13px; }
+  .bar .row { gap: 8px; flex-wrap: nowrap; }
+  .bar-text { font-size: 13px; white-space: nowrap; }
+  #resetBtn { padding: 0 12px; font-size: 13px; }
+  .meta { flex-wrap: wrap; gap: 8px; }
+  .letter { width: 26px; height: 26px; font-size: 13px; }
+  .meta-text { flex: 1 1 0; }
+  .name { font-size: 15px; line-height: 1.25; }
+  .blurb { display: none; }
+  .zoom { flex: 1 1 100%; min-height: 40px; }
+  .rank { width: 40px; height: 40px; font-size: 20px; right: 8px; }
+  .frame, .pick { border-radius: 16px; }
+}
+@media (max-width: 640px) { #resetBtn { display: none; } }
+#resetBtn2 { display: none; }
+@media (max-width: 640px) { #resetBtn2 { display: inline-block; } }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 18px; box-shadow: var(--shadow); }
+.order { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.order li { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: var(--chip); font-weight: 600; font-size: 15px; min-width: 0; }
+.order .n { font-family: var(--display); font-weight: 800; font-size: 20px; color: var(--accent); width: 18px; font-variant-numeric: tabular-nums; }
+.empty { color: var(--muted); font-size: 15px; }
+.fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 12px; }
+@media (max-width: 640px) { .fields { grid-template-columns: minmax(0, 1fr); } }
+label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700; color: var(--muted); }
+input, textarea { font: 500 16px var(--body); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; min-height: 48px; box-sizing: border-box; width: 100%; }
+textarea { min-height: 48px; resize: vertical; }
+input:focus-visible, textarea:focus-visible, .btn:focus-visible, .zoom:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.btn { min-height: 48px; padding: 0 20px; border-radius: 999px; border: 0; background: var(--fg); color: var(--bg); font: 700 15px var(--body); cursor: pointer; }
+.btn[disabled] { opacity: 0.35; cursor: not-allowed; }
+.btn.ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); }
+.status { font-size: 14px; color: var(--muted); }
+pre.result { margin: 0; padding: 14px 16px; border-radius: 12px; background: var(--bg); border: 1px solid var(--line); font: 500 14px/1.55 ui-monospace, "SF Mono", Menlo, monospace; white-space: pre-wrap; overflow-wrap: anywhere; user-select: all; }
+
+details.tally { border-top: 1px solid var(--line); padding-top: 24px; }
+details.tally summary { cursor: pointer; font-family: var(--display); font-weight: 800; font-size: 22px; list-style: none; display: flex; align-items: center; gap: 10px; }
+details.tally summary::-webkit-details-marker { display: none; }
+details.tally summary::before { content: "+"; width: 28px; height: 28px; border-radius: 8px; border: 1px solid var(--line); display: grid; place-items: center; font-size: 18px; }
+details.tally[open] summary::before { content: "–"; }
+.tally-body { display: flex; flex-direction: column; gap: 14px; padding-top: 16px; }
+.results { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.results th, .results td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); font-size: 15px; vertical-align: middle; }
+.results th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; }
+.results td.num { text-align: right; }
+.results th.num { text-align: right; }
+.track { height: 10px; border-radius: 5px; background: var(--chip); min-width: 80px; }
+.fill { height: 10px; border-radius: 5px; background: var(--accent); }
+.table-wrap { overflow-x: auto; }
+
+.modal { position: fixed; inset: 0; z-index: 20; background: rgba(10, 10, 12, 0.78); display: flex; align-items: center; justify-content: center; padding: 24px 16px; }
+.modal[hidden] { display: none !important; }
+.modal-inner { display: flex; flex-direction: column; align-items: center; gap: 14px; max-height: 100%; }
+.modal-frame { position: relative; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); }
+.modal-row { display: flex; gap: 10px; }
+.modal .btn { background: #fff; color: #111; }
+.modal .btn.ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.4); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">She's Right · Today screen · Sunny day</div>
+    <h1>Which look should the app go with?</h1>
+    <p class="lede">Six versions of the same screen. Tap them in order, from your favorite to your least favorite. Tap a screen again to take it back.</p>
+  </header>
+
+  <div class="bar" role="status" aria-live="polite">
+    <div class="slots" id="slots"></div>
+    <div class="row">
+      <span class="bar-text" id="barText"><strong>0 of 6</strong> ranked</span>
+      <button class="btn ghost" id="resetBtn" type="button" style="min-height: 40px">Start over</button>
+    </div>
+  </div>
+
+  <section class="grid" id="grid" aria-label="Designs"></section>
+
+  <section class="panel" aria-labelledby="yourTitle">
+    <h2 id="yourTitle">Your ranking</h2>
+    <ol class="order" id="order"></ol>
+    <div class="fields">
+      <label for="voterName">Your name
+        <input id="voterName" type="text" autocomplete="name" placeholder="Optional">
+      </label>
+      <label for="voterNote">Anything you'd change? (optional)
+        <textarea id="voterNote" rows="1" placeholder="e.g. love C, but the text is small"></textarea>
+      </label>
+    </div>
+    <div class="row">
+      <button class="btn" id="copyBtn" type="button" disabled>Copy my ranking</button>
+      <button class="btn ghost" id="resetBtn2" type="button">Start over</button>
+      <span class="status" id="copyStatus">Rank all six to finish.</span>
+    </div>
+    <pre class="result" id="resultText" hidden></pre>
+    <p class="status" id="sendHint" hidden>Paste it in a message to whoever sent you this link.</p>
+
+    <details class="tally" id="tally">
+      <summary>Collecting results? Count the votes</summary>
+      <div class="tally-body">
+        <p class="status">Paste every ranking you received into the box below, all at once. Each one has a code like <strong>SR:DCOABE</strong>. Points: 6 for 1st place down to 1 for 6th.</p>
+        <label for="tallyInput">Rankings you received
+          <textarea id="tallyInput" rows="6" placeholder="Paste the messages here"></textarea>
+        </label>
+        <div class="row">
+          <button class="btn" id="countBtn" type="button">Count votes</button>
+          <span class="status" id="tallyStatus"></span>
+        </div>
+        <div class="table-wrap" id="tallyOut" hidden>
+          <table class="results">
+            <thead><tr><th>Design</th><th class="num">Points</th><th class="num">Avg. place</th><th class="num">1st picks</th><th style="width: 30%" aria-label="Share of top score"></th></tr></thead>
+            <tbody id="tallyBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+  </section>
+</div>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-inner">
+    <div class="modal-frame" id="modalFrame"></div>
+    <div class="modal-row">
+      <span id="modalTitle" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)"></span>
+      <button class="btn" id="modalPick" type="button">Rank this next</button>
+      <button class="btn ghost" id="modalClose" type="button">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const DESIGNS = [{"id": "GreenDay", "letter": "O", "name": "Original", "blurb": "Dark charcoal with a gold glow, condensed type", "html": "<div style=\"width: 390px; height: 844px; box-sizing: border-box; background: radial-gradient(160% 95% at 85% -10%, rgba(242, 193, 78, 0.60) 0%, rgba(242, 193, 78, 0.24) 40%, rgba(242, 193, 78, 0.08) 65%, #121417 90%), #121417; padding: 56px 20px 0 20px; display: flex; flex-direction: column; gap: 20px; font-family: Barlow, system-ui, sans-serif; color: #F2EFE9\">\n\n<div style=\"display: flex; justify-content: space-between; align-items: center\">\n<div style=\"display: flex; flex-direction: column; gap: 2px\">\n<div style=\"font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 30px; letter-spacing: 0.5px; text-transform: uppercase\">She's Right<\/div>\n<div style=\"font-size: 14px; color: #9BA3AE\">Tuesday, Oct 13<\/div>\n<\/div>\n<button aria-label=\"Settings\" style=\"width: 44px; height: 44px; border-radius: 22px; background: #1C2026; border: 1px solid #2C323A; color: #F2EFE9; display: flex; align-items: center; justify-content: center; cursor: pointer\">\n<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"3\"><\/circle><path d=\"M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z\"><\/path><\/svg>\n<\/button>\n<\/div>\n\n<div style=\"display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px\">\n\n<div style=\"display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 0;border-radius:14px;background:#1C2026;border:1px solid #2C323A;\">\n<div style=\"font-size: 12px; font-weight: 600; color: #9BA3AE\">M<\/div>\n<div style=\"font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700\">12<\/div>\n<div style=\"width:8px;height:8px;border-radius:4px;background:#F2C14E\"><\/div>\n<\/div>\n\n<div style=\"display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 0;border-radius:14px;background:#252A31;border:1px solid #F2EFE9;\">\n<div style=\"font-size: 12px; font-weight: 600; color: #9BA3AE\">T<\/div>\n<div style=\"font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700\">13<\/div>\n<div style=\"width:8px;height:8px;border-radius:4px;background:#F2C14E\"><\/div>\n<\/div>\n\n<div style=\"display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 0;border-radius:14px;background:#1C2026;border:1px solid #2C323A;\">\n<div style=\"font-size: 12px; font-weight: 600; color: #9BA3AE\">W<\/div>\n<div style=\"font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700\">14<\/div>\n<div style=\"width:8px;height:8px;border-radius:4px;background:#F2C14E\"><\/div>\n<\/div>\n\n<div style=\"display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 0;border-radius:14px;background:#1C2026;border:1px solid #2C323A;\">\n<div style=\"font-size: 12px; font-weight: 600; color: #9BA3AE\">T<\/div>\n<div style=\"font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700\">15<\/div>\n<div style=\"width:8px;height:8px;border-radius:4px;background:#F2C14E\"><\/div>\n<\/div>\n\n<div style=\"display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 0;border-radius:14px;background:#1C2026;border:1px solid #2C323A;\">\n<div style=\"font-size: 12px; font-weight: 600; color: #9BA3AE\">F<\/div>\n<div style=\"font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700\">16<\/div>\n<div style=\"width:8px;height:8px;border-radius:4px;background:#F2C14E\"><\/div>\n<\/div>\n\n<div style=\"display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 0;border-radius:14px;background:#1C2026;border:1px solid #2C323A;\">\n<div style=\"font-size: 12px; font-weight: 600; color: #9BA3AE\">S<\/div>\n<div style=\"font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700\">17<\/div>\n<div style=\"width:8px;height:8px;border-radius:4px;background:#F2C14E\"><\/div>\n<\/div>\n\n<div style=\"display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 0;border-radius:14px;background:#1C2026;border:1px solid #2C323A;\">\n<div style=\"font-size: 12px; font-weight: 600; color: #9BA3AE\">S<\/div>\n<div style=\"font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700\">18<\/div>\n<div style=\"width:8px;height:8px;border-radius:4px;background:#8A97A6\"><\/div>\n<\/div>\n\n<\/div>\n\n<div style=\"background: rgba(34, 31, 23, 0.72); border: 1px solid rgba(242, 193, 78, 0.35); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 16px\">\n<div style=\"display: flex; justify-content: space-between; align-items: flex-start\">\n<div style=\"display: flex; flex-direction: column; gap: 4px\">\n<div style=\"font-size: 13px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: #F2C14E\">Follicular phase \u00b7 Day 10 of 28<\/div>\n<div style=\"font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 48px; line-height: 1; text-transform: uppercase\">Clear skies<\/div>\n<\/div>\n<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#F2C14E\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4.5\"><\/circle><path d=\"M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8\"><\/path><\/svg>\n<\/div>\n<div style=\"font-size: 17px; line-height: 1.45; color: #E4E0D8\">Estrogen is rising toward ovulation, so energy tends to peak. A great week to make plans, try something new, or have that bigger conversation.<\/div>\n<div style=\"display: flex; gap: 10px; align-items: center; background: #2E2A1E; border-radius: 14px; padding: 14px\">\n<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#F2C14E\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"><\/rect><line x1=\"16\" y1=\"2\" x2=\"16\" y2=\"6\"><\/line><line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"6\"><\/line><line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"><\/line><\/svg>\n<div style=\"font-size: 15px; font-weight: 500\">Move of the day: book a date night for Friday.<\/div>\n<\/div>\n<div style=\"display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: #9BA3AE\">\n<div>Good run for <span style=\"color: #F2EFE9; font-weight: 600\">5 more days<\/span><\/div>\n<div style=\"display: flex; gap: 6px; align-items: center\"><div style=\"width: 10px; height: 10px; border-radius: 5px; background: #8A97A6\"><\/div>Partly cloudy<\/div>\n<\/div>\n<\/div>\n\n<div style=\"display: flex; gap: 12px; align-items: center; background: #1C2026; border: 1px solid #2C323A; border-radius: 18px; padding: 16px\">\n<div style=\"width: 40px; height: 40px; border-radius: 20px; background: #2E3A2A; display: flex; align-items: center; justify-content: center; flex-shrink: 0\">\n<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#A9C98A\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"><\/path><\/svg>\n<\/div>\n<div style=\"display: flex; flex-direction: column; gap: 2px; flex-grow: 1\">\n<div style=\"font-size: 13px; color: #9BA3AE\">Her check-in \u00b7 1h ago<\/div>\n<div style=\"font-size: 16px; font-weight: 600\">\"Feeling great today\"<\/div>\n<\/div>\n<\/div>\n\n<div style=\"display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px\">\n<button style=\"min-height: 56px; border-radius: 16px; background: #F2C14E; border: none; color: #121417; font-weight: 700; font-size: 16px; cursor: pointer\">Plan a date<\/button>\n<a href=\"CheatSheet.dc.html\" style=\"min-height: 56px; border-radius: 16px; background: #1C2026; border: 1px solid #2C323A; color: #F2EFE9; font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; text-decoration: none; box-sizing: border-box\">Her cheat sheet<\/a>\n<\/div>\n\n<div style=\"margin-top: auto; margin-left: -20px; margin-right: -20px; border-top: 1px solid #2C323A; background: #16191D; padding: 10px 20px 28px 20px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px\">\n<button style=\"min-height: 48px; background: none; border: none; color: #F2C14E; font-size: 12px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4\"><\/circle><path d=\"M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4\"><\/path><\/svg>Today<\/button>\n<a href=\"Calendar.dc.html\" style=\"min-height: 48px; text-decoration: none; color: #9BA3AE; font-size: 12px; font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"><\/rect><line x1=\"16\" y1=\"2\" x2=\"16\" y2=\"6\"><\/line><line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"6\"><\/line><line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"><\/line><\/svg>Calendar<\/a>\n<a href=\"Ideas.dc.html\" style=\"min-height: 48px; text-decoration: none; color: #9BA3AE; font-size: 12px; font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 18h6\"><\/path><path d=\"M10 22h4\"><\/path><path d=\"M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z\"><\/path><\/svg>Ideas<\/a>\n<\/div>\n\n<\/div>"}, {"id": "SunnyPaper", "letter": "A", "name": "Morning paper", "blurb": "Cream paper, italic serif headline", "html": "<div style=\"width: 390px; height: 844px; box-sizing: border-box; background: #F4EEE3; padding: 56px 24px 0 24px; display: flex; flex-direction: column; gap: 18px; font-family: 'DM Sans', sans-serif; color: #1E1B16\">\n\n<div style=\"display: flex; flex-direction: column; gap: 6px; border-bottom: 2px solid #1E1B16; padding-bottom: 10px\">\n<div style=\"display: flex; justify-content: space-between; align-items: flex-end\">\n<div style=\"font-family: Fraunces, serif; font-weight: 700; font-size: 30px; line-height: 1\">She's Right<\/div>\n<button aria-label=\"Settings\" style=\"width: 44px; height: 44px; border-radius: 22px; background: transparent; border: 1px solid #CFC5B4; color: #1E1B16; display: flex; align-items: center; justify-content: center; cursor: pointer\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><line x1=\"4\" y1=\"7\" x2=\"20\" y2=\"7\"><\/line><line x1=\"4\" y1=\"12\" x2=\"20\" y2=\"12\"><\/line><line x1=\"4\" y1=\"17\" x2=\"14\" y2=\"17\"><\/line><\/svg><\/button>\n<\/div>\n<div style=\"display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: #6B6358\">\n<div>Tuesday, October 13<\/div>\n<div>Day 10 of 28<\/div>\n<\/div>\n<\/div>\n\n<div style=\"display: flex; justify-content: space-between; align-items: flex-start; gap: 12px\">\n<div style=\"display: flex; flex-direction: column; gap: 8px\">\n<div style=\"font-size: 12px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: #B4532A\">Today's forecast \u00b7 Follicular<\/div>\n<div style=\"font-family: Fraunces, serif; font-style: italic; font-weight: 600; font-size: 64px; line-height: 0.92; letter-spacing: -1px\">Clear skies.<\/div>\n<\/div>\n<svg width=\"72\" height=\"72\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#D9952A\" stroke-width=\"1.4\" stroke-linecap=\"round\" aria-hidden=\"true\" style=\"flex-shrink: 0; margin-top: 6px\"><circle cx=\"12\" cy=\"12\" r=\"4.5\" fill=\"#F2C14E\"><\/circle><path d=\"M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8\"><\/path><\/svg>\n<\/div>\n\n<div style=\"font-family: Fraunces, serif; font-size: 18px; line-height: 1.45; color: #3A342C\">Estrogen is rising toward ovulation, so energy tends to peak. A great week to make plans, try something new, or have that bigger conversation.<\/div>\n\n<div style=\"display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-top: 1px solid #CFC5B4; border-bottom: 1px solid #CFC5B4; padding: 10px 0\">\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 4px\"><div style=\"font-size: 11px; font-weight: 600; color: #6B6358\">M<\/div><div style=\"font-family: Fraunces, serif; font-size: 18px\">12<\/div><div style=\"width: 6px; height: 6px; border-radius: 3px; background: #D9952A\"><\/div><\/div>\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 4px; background: #1E1B16; color: #F4EEE3; border-radius: 10px; padding: 4px 0\"><div style=\"font-size: 11px; font-weight: 600; color: #D8CFC0\">T<\/div><div style=\"font-family: Fraunces, serif; font-size: 18px\">13<\/div><div style=\"width: 6px; height: 6px; border-radius: 3px; background: #F2C14E\"><\/div><\/div>\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 4px\"><div style=\"font-size: 11px; font-weight: 600; color: #6B6358\">W<\/div><div style=\"font-family: Fraunces, serif; font-size: 18px\">14<\/div><div style=\"width: 6px; height: 6px; border-radius: 3px; background: #D9952A\"><\/div><\/div>\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 4px\"><div style=\"font-size: 11px; font-weight: 600; color: #6B6358\">T<\/div><div style=\"font-family: Fraunces, serif; font-size: 18px\">15<\/div><div style=\"width: 6px; height: 6px; border-radius: 3px; background: #D9952A\"><\/div><\/div>\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 4px\"><div style=\"font-size: 11px; font-weight: 600; color: #6B6358\">F<\/div><div style=\"font-family: Fraunces, serif; font-size: 18px\">16<\/div><div style=\"width: 6px; height: 6px; border-radius: 3px; background: #D9952A\"><\/div><\/div>\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 4px\"><div style=\"font-size: 11px; font-weight: 600; color: #6B6358\">S<\/div><div style=\"font-family: Fraunces, serif; font-size: 18px\">17<\/div><div style=\"width: 6px; height: 6px; border-radius: 3px; background: #D9952A\"><\/div><\/div>\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 4px\"><div style=\"font-size: 11px; font-weight: 600; color: #6B6358\">S<\/div><div style=\"font-family: Fraunces, serif; font-size: 18px\">18<\/div><div style=\"width: 6px; height: 6px; border-radius: 3px; background: #8A97A6\"><\/div><\/div>\n<\/div>\n\n<div style=\"display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px\">\n<div style=\"display: flex; flex-direction: column; gap: 4px\">\n<div style=\"font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #6B6358\">Move of the day<\/div>\n<div style=\"font-size: 15px; font-weight: 600; line-height: 1.35\">Book a date night for Friday.<\/div>\n<\/div>\n<div style=\"display: flex; flex-direction: column; gap: 4px\">\n<div style=\"font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #6B6358\">Her check-in \u00b7 1h<\/div>\n<div style=\"font-family: Fraunces, serif; font-style: italic; font-size: 17px; line-height: 1.3\">\"Feeling great today.\"<\/div>\n<\/div>\n<\/div>\n\n<div style=\"font-size: 14px; color: #6B6358\">Good run for <span style=\"color: #1E1B16; font-weight: 700\">5 more days<\/span>, then partly cloudy.<\/div>\n\n<div style=\"display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px\">\n<button style=\"min-height: 54px; border-radius: 27px; background: #1E1B16; border: none; color: #F4EEE3; font-weight: 700; font-size: 16px; cursor: pointer\">Plan a date<\/button>\n<a href=\"CheatSheet.dc.html\" style=\"min-height: 54px; box-sizing: border-box; border-radius: 27px; border: 1.5px solid #1E1B16; color: #1E1B16; font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; text-decoration: none\">Her cheat sheet<\/a>\n<\/div>\n\n<div style=\"margin-top: auto; margin-left: -24px; margin-right: -24px; border-top: 1px solid #CFC5B4; padding: 14px 24px 30px 24px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr))\">\n<button style=\"min-height: 44px; background: none; border: none; font-family: Fraunces, serif; font-style: italic; font-size: 17px; font-weight: 600; color: #B4532A; cursor: pointer\">Today<\/button>\n<a href=\"Calendar.dc.html\" style=\"min-height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-family: Fraunces, serif; font-size: 17px; color: #6B6358\">Calendar<\/a>\n<a href=\"Ideas.dc.html\" style=\"min-height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-family: Fraunces, serif; font-size: 17px; color: #6B6358\">Ideas<\/a>\n<\/div>\n\n<\/div>"}, {"id": "SunnyGameDay", "letter": "B", "name": "Game day", "blurb": "Sun yellow, thick outlines, bold blocks", "html": "<div style=\"width: 390px; height: 844px; box-sizing: border-box; background: #FFD23F; padding: 56px 18px 0 18px; display: flex; flex-direction: column; gap: 16px; font-family: Archivo, sans-serif; color: #111111\">\n\n<div style=\"display: flex; justify-content: space-between; align-items: center\">\n<div style=\"display: flex; flex-direction: column; gap: 2px\">\n<div style=\"font-family: 'Archivo Black', sans-serif; font-size: 24px; line-height: 1; text-transform: uppercase\">She's Right<span style=\"color: #E8462A\">.<\/span><\/div>\n<div style=\"font-size: 13px; font-weight: 700\">TUE \u00b7 OCT 13<\/div>\n<\/div>\n<button aria-label=\"Settings\" style=\"width: 44px; height: 44px; background: #FFFFFF; border: 3px solid #111111; border-radius: 12px; box-shadow: 3px 3px 0 #111111; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #111111\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" aria-hidden=\"true\"><line x1=\"4\" y1=\"7\" x2=\"20\" y2=\"7\"><\/line><line x1=\"4\" y1=\"12\" x2=\"20\" y2=\"12\"><\/line><line x1=\"4\" y1=\"17\" x2=\"20\" y2=\"17\"><\/line><\/svg><\/button>\n<\/div>\n\n<div style=\"background: #FFFFFF; border: 3px solid #111111; border-radius: 22px; box-shadow: 6px 6px 0 #111111; padding: 20px; display: flex; flex-direction: column; gap: 14px; position: relative; overflow: hidden\">\n<div style=\"position: absolute; right: -36px; top: -36px; width: 150px; height: 150px; border-radius: 75px; background: #FFD23F; border: 3px solid #111111\"><\/div>\n<div style=\"display: flex; gap: 8px; position: relative\">\n<div style=\"padding: 6px 10px; border-radius: 8px; background: #111111; color: #FFD23F; font-size: 12px; font-weight: 800; letter-spacing: 0.8px\">FOLLICULAR<\/div>\n<div style=\"padding: 6px 10px; border-radius: 8px; border: 2px solid #111111; font-size: 12px; font-weight: 800; letter-spacing: 0.8px\">DAY 10/28<\/div>\n<\/div>\n<div style=\"font-family: 'Archivo Black', sans-serif; font-size: 58px; line-height: 0.88; text-transform: uppercase; position: relative\">Clear<br>skies<\/div>\n<div style=\"font-size: 16px; font-weight: 500; line-height: 1.4; position: relative\">Estrogen is rising toward ovulation, so energy tends to peak. Go big this week.<\/div>\n<\/div>\n\n<div style=\"display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px\">\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 0; background: #FFFFFF; border: 2.5px solid #111111; border-radius: 10px\"><div style=\"font-size: 11px; font-weight: 800\">M<\/div><div style=\"font-family: 'Archivo Black', sans-serif; font-size: 17px\">12<\/div><\/div>\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 0; background: #111111; color: #FFD23F; border: 2.5px solid #111111; border-radius: 10px\"><div style=\"font-size: 11px; font-weight: 800\">T<\/div><div style=\"font-family: 'Archivo Black', sans-serif; font-size: 17px\">13<\/div><\/div>\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 0; background: #FFFFFF; border: 2.5px solid #111111; border-radius: 10px\"><div style=\"font-size: 11px; font-weight: 800\">W<\/div><div style=\"font-family: 'Archivo Black', sans-serif; font-size: 17px\">14<\/div><\/div>\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 0; background: #FFFFFF; border: 2.5px solid #111111; border-radius: 10px\"><div style=\"font-size: 11px; font-weight: 800\">T<\/div><div style=\"font-family: 'Archivo Black', sans-serif; font-size: 17px\">15<\/div><\/div>\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 0; background: #FFFFFF; border: 2.5px solid #111111; border-radius: 10px\"><div style=\"font-size: 11px; font-weight: 800\">F<\/div><div style=\"font-family: 'Archivo Black', sans-serif; font-size: 17px\">16<\/div><\/div>\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 0; background: #FFFFFF; border: 2.5px solid #111111; border-radius: 10px\"><div style=\"font-size: 11px; font-weight: 800\">S<\/div><div style=\"font-family: 'Archivo Black', sans-serif; font-size: 17px\">17<\/div><\/div>\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 0; background: #C9D1DA; border: 2.5px solid #111111; border-radius: 10px\"><div style=\"font-size: 11px; font-weight: 800\">S<\/div><div style=\"font-family: 'Archivo Black', sans-serif; font-size: 17px\">18<\/div><\/div>\n<\/div>\n\n<div style=\"display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px\">\n<div style=\"background: #E8462A; color: #FFFFFF; border: 3px solid #111111; border-radius: 18px; box-shadow: 4px 4px 0 #111111; padding: 14px; display: flex; flex-direction: column; gap: 6px\">\n<div style=\"font-size: 11px; font-weight: 800; letter-spacing: 1px\">MOVE OF THE DAY<\/div>\n<div style=\"font-size: 16px; font-weight: 800; line-height: 1.25\">Book date night for Friday<\/div>\n<\/div>\n<div style=\"background: #FFFFFF; border: 3px solid #111111; border-radius: 18px; box-shadow: 4px 4px 0 #111111; padding: 14px; display: flex; flex-direction: column; gap: 6px\">\n<div style=\"font-size: 11px; font-weight: 800; letter-spacing: 1px\">HER CHECK-IN<\/div>\n<div style=\"font-size: 16px; font-weight: 800; line-height: 1.25\">\"Feeling great today\"<\/div>\n<\/div>\n<\/div>\n\n<div style=\"display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 700\">\n<div>Good run: 5 more days<\/div>\n<div style=\"display: flex; align-items: center; gap: 6px\"><div style=\"width: 12px; height: 12px; border-radius: 6px; background: #C9D1DA; border: 2px solid #111111\"><\/div>Then cloudy<\/div>\n<\/div>\n\n<div style=\"display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px\">\n<button style=\"min-height: 56px; background: #111111; color: #FFD23F; border: 3px solid #111111; border-radius: 16px; font-weight: 800; font-size: 16px; cursor: pointer\">PLAN A DATE<\/button>\n<a href=\"CheatSheet.dc.html\" style=\"min-height: 56px; box-sizing: border-box; background: #FFFFFF; border: 3px solid #111111; border-radius: 16px; font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #111111\">CHEAT SHEET<\/a>\n<\/div>\n\n<div style=\"margin-top: auto; margin-left: -18px; margin-right: -18px; border-top: 3px solid #111111; background: #FFFFFF; padding: 10px 18px 28px 18px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px\">\n<button style=\"min-height: 44px; background: #111111; color: #FFD23F; border: none; border-radius: 12px; font-size: 13px; font-weight: 800; cursor: pointer\">TODAY<\/button>\n<a href=\"Calendar.dc.html\" style=\"min-height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #111111; font-size: 13px; font-weight: 800\">CALENDAR<\/a>\n<a href=\"Ideas.dc.html\" style=\"min-height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #111111; font-size: 13px; font-weight: 800\">IDEAS<\/a>\n<\/div>\n\n<\/div>"}, {"id": "SunnyDot", "letter": "C", "name": "The dot", "blurb": "Black with the glowing app-icon orb", "html": "<div style=\"width: 390px; height: 844px; box-sizing: border-box; background: #0A0A0B; padding: 56px 28px 0 28px; display: flex; flex-direction: column; align-items: center; gap: 22px; font-family: Sora, sans-serif; color: #EDEDED\">\n\n<div style=\"width: 100%; display: flex; justify-content: space-between; align-items: center\">\n<div style=\"font-size: 13px; color: #9A9A9F\">Tue, Oct 13<\/div>\n<div style=\"display: flex; gap: 7px; align-items: center\" aria-label=\"This week: six sunny days, then cloudy\">\n<div style=\"width: 6px; height: 6px; border-radius: 3px; background: #F2C14E; opacity: 0.5\"><\/div>\n<div style=\"width: 10px; height: 10px; border-radius: 5px; background: #F2C14E\"><\/div>\n<div style=\"width: 6px; height: 6px; border-radius: 3px; background: #F2C14E; opacity: 0.5\"><\/div>\n<div style=\"width: 6px; height: 6px; border-radius: 3px; background: #F2C14E; opacity: 0.5\"><\/div>\n<div style=\"width: 6px; height: 6px; border-radius: 3px; background: #F2C14E; opacity: 0.5\"><\/div>\n<div style=\"width: 6px; height: 6px; border-radius: 3px; background: #F2C14E; opacity: 0.5\"><\/div>\n<div style=\"width: 6px; height: 6px; border-radius: 3px; background: #8A97A6; opacity: 0.6\"><\/div>\n<\/div>\n<button aria-label=\"Settings\" style=\"width: 44px; height: 44px; border-radius: 22px; background: transparent; border: 1px solid #26262A; color: #EDEDED; display: flex; align-items: center; justify-content: center; cursor: pointer\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><circle cx=\"5\" cy=\"12\" r=\"2\"><\/circle><circle cx=\"12\" cy=\"12\" r=\"2\"><\/circle><circle cx=\"19\" cy=\"12\" r=\"2\"><\/circle><\/svg><\/button>\n<\/div>\n\n<div style=\"position: relative; width: 280px; height: 280px; display: flex; align-items: center; justify-content: center; margin-top: 8px\">\n<svg width=\"280\" height=\"280\" viewBox=\"0 0 280 280\" style=\"position: absolute; left: 0; top: 0\" aria-hidden=\"true\">\n<circle cx=\"140\" cy=\"140\" r=\"130\" fill=\"none\" stroke=\"#1E1E22\" stroke-width=\"3\"><\/circle>\n<circle cx=\"140\" cy=\"140\" r=\"130\" fill=\"none\" stroke=\"#F2C14E\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-dasharray=\"292 817\" transform=\"rotate(-90 140 140)\"><\/circle>\n<circle cx=\"242\" cy=\"221\" r=\"7\" fill=\"#0A0A0B\" stroke=\"#F2C14E\" stroke-width=\"3\"><\/circle>\n<\/svg>\n<div style=\"width: 150px; height: 150px; border-radius: 75px; background: radial-gradient(circle at 35% 30%, #FFE08A 0%, #F2C14E 55%, #D99A2B 100%); box-shadow: 0 0 90px rgba(242, 193, 78, 0.55), 0 0 30px rgba(242, 193, 78, 0.6)\"><\/div>\n<\/div>\n\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px\">\n<div style=\"font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #9A9A9F\">Day 10 \u00b7 Follicular<\/div>\n<div style=\"font-weight: 300; font-size: 44px; letter-spacing: -1px; line-height: 1\">Clear skies<\/div>\n<div style=\"font-size: 15px; line-height: 1.55; color: #B9B9BE; text-align: center; max-width: 300px\">Energy tends to peak this week. Make plans, try something new.<\/div>\n<\/div>\n\n<div style=\"width: 100%; display: flex; flex-direction: column; gap: 0; border-top: 1px solid #1E1E22\">\n<div style=\"display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #1E1E22\">\n<div style=\"font-size: 13px; color: #9A9A9F\">Move<\/div>\n<div style=\"font-size: 15px; font-weight: 500\">Book Friday's date night<\/div>\n<\/div>\n<div style=\"display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #1E1E22\">\n<div style=\"font-size: 13px; color: #9A9A9F\">Her<\/div>\n<div style=\"font-size: 15px; font-weight: 500\">\"Feeling great today\"<\/div>\n<\/div>\n<div style=\"display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #1E1E22\">\n<div style=\"font-size: 13px; color: #9A9A9F\">Next<\/div>\n<div style=\"font-size: 15px; font-weight: 500\">Cloudy in 5 days<\/div>\n<\/div>\n<\/div>\n\n<button style=\"width: 100%; min-height: 54px; border-radius: 27px; background: #F2C14E; border: none; color: #0A0A0B; font-weight: 600; font-size: 16px; cursor: pointer\">Plan a date<\/button>\n\n<div style=\"margin-top: auto; width: 100%; padding: 6px 0 30px 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr))\">\n<button style=\"min-height: 44px; background: none; border: none; color: #EDEDED; font-size: 13px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer\"><div style=\"width: 6px; height: 6px; border-radius: 3px; background: #F2C14E\"><\/div>Today<\/button>\n<a href=\"Calendar.dc.html\" style=\"min-height: 44px; text-decoration: none; color: #9A9A9F; font-size: 13px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px\">Calendar<\/a>\n<a href=\"Ideas.dc.html\" style=\"min-height: 44px; text-decoration: none; color: #9A9A9F; font-size: 13px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px\">Ideas<\/a>\n<\/div>\n\n<\/div>"}, {"id": "SunnyWeather", "letter": "D", "name": "Weather app", "blurb": "Blue sky, looks like a weather app", "html": "<div style=\"width: 390px; height: 844px; box-sizing: border-box; background: linear-gradient(180deg, #2361AE 0%, #3473BD 45%, #1D4F8E 100%); padding: 60px 16px 0 16px; display: flex; flex-direction: column; gap: 14px; font-family: Figtree, sans-serif; color: #FFFFFF\">\n\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 2px; padding-bottom: 6px\">\n<div style=\"font-size: 15px; font-weight: 500; letter-spacing: 0.3px\">She's Right \u00b7 Tuesday<\/div>\n<div style=\"display: flex; align-items: flex-start\">\n<div style=\"font-weight: 300; font-size: 104px; line-height: 1; letter-spacing: -4px\">10<\/div>\n<div style=\"font-weight: 400; font-size: 22px; margin-top: 16px; margin-left: 4px\">/28<\/div>\n<\/div>\n<div style=\"font-size: 22px; font-weight: 500\">Clear Skies<\/div>\n<div style=\"font-size: 16px; font-weight: 500; color: #E3EEFA\">Follicular \u00b7 Ovulation in 3 days<\/div>\n<\/div>\n\n<div style=\"background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px\">\n<div style=\"font-size: 14px; line-height: 1.4\">Energy tends to peak this week. Clear skies expected through Saturday, partly cloudy Sunday.<\/div>\n<div style=\"height: 1px; background: rgba(255, 255, 255, 0.22)\"><\/div>\n<div style=\"display: grid; grid-template-columns: repeat(7, minmax(0, 1fr))\">\n\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px\">\n<div style=\"font-size:13px;font-weight:700;color:#FFFFFF\">Now<\/div>\n<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"#FFD66B\" stroke=\"#FFD66B\" stroke-width=\"1.6\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4.5\"><\/circle><path d=\"M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8\" fill=\"none\"><\/path><\/svg>\n\n<div style=\"font-size: 15px; font-weight: 600\">13<\/div>\n<\/div>\n\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px\">\n<div style=\"font-size:13px;font-weight:500;color:#E3EEFA\">Wed<\/div>\n<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"#FFD66B\" stroke=\"#FFD66B\" stroke-width=\"1.6\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4.5\"><\/circle><path d=\"M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8\" fill=\"none\"><\/path><\/svg>\n\n<div style=\"font-size: 15px; font-weight: 600\">14<\/div>\n<\/div>\n\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px\">\n<div style=\"font-size:13px;font-weight:500;color:#E3EEFA\">Thu<\/div>\n<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"#FFD66B\" stroke=\"#FFD66B\" stroke-width=\"1.6\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4.5\"><\/circle><path d=\"M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8\" fill=\"none\"><\/path><\/svg>\n\n<div style=\"font-size: 15px; font-weight: 600\">15<\/div>\n<\/div>\n\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px\">\n<div style=\"font-size:13px;font-weight:500;color:#E3EEFA\">Fri<\/div>\n<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"#FFD66B\" stroke=\"#FFD66B\" stroke-width=\"1.6\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4.5\"><\/circle><path d=\"M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8\" fill=\"none\"><\/path><\/svg>\n\n<div style=\"font-size: 15px; font-weight: 600\">16<\/div>\n<\/div>\n\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px\">\n<div style=\"font-size:13px;font-weight:500;color:#E3EEFA\">Sat<\/div>\n<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"#FFD66B\" stroke=\"#FFD66B\" stroke-width=\"1.6\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4.5\"><\/circle><path d=\"M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8\" fill=\"none\"><\/path><\/svg>\n\n<div style=\"font-size: 15px; font-weight: 600\">17<\/div>\n<\/div>\n\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px\">\n<div style=\"font-size:13px;font-weight:500;color:#E3EEFA\">Sun<\/div>\n\n<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"#E3EEFA\" aria-hidden=\"true\"><path d=\"M18 10h-1.3A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z\"><\/path><\/svg>\n<div style=\"font-size: 15px; font-weight: 600\">18<\/div>\n<\/div>\n\n<div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px\">\n<div style=\"font-size:13px;font-weight:500;color:#E3EEFA\">Mon<\/div>\n\n<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"#E3EEFA\" aria-hidden=\"true\"><path d=\"M18 10h-1.3A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z\"><\/path><\/svg>\n<div style=\"font-size: 15px; font-weight: 600\">19<\/div>\n<\/div>\n\n<\/div>\n<\/div>\n\n<div style=\"background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 18px; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px\">\n<div style=\"display: flex; gap: 6px; align-items: center; font-size: 12px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #E3EEFA\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" aria-hidden=\"true\"><polyline points=\"20 6 9 17 4 12\"><\/polyline><\/svg>Energy outlook<\/div>\n<div style=\"display: flex; align-items: center; gap: 10px; padding-top: 6px\">\n<div style=\"font-size: 14px; font-weight: 600; width: 40px\">Low<\/div>\n<div style=\"flex-grow: 1; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, 0.22); position: relative\"><div style=\"position: absolute; left: 0; top: 0; height: 6px; width: 86%; border-radius: 3px; background: linear-gradient(90deg, #8FD0FF 0%, #FFD66B 60%, #FFB347 100%)\"><\/div><div style=\"position: absolute; left: 82%; top: -3px; width: 12px; height: 12px; border-radius: 6px; background: #FFFFFF\"><\/div><\/div>\n<div style=\"font-size: 14px; font-weight: 600; width: 40px; text-align: right\">Peak<\/div>\n<\/div>\n<\/div>\n\n<div style=\"display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px\">\n<div style=\"background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 18px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; min-height: 120px; box-sizing: border-box\">\n<div style=\"font-size: 12px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #E3EEFA\">Move of the day<\/div>\n<div style=\"font-size: 18px; font-weight: 600; line-height: 1.25\">Book date night for Friday<\/div>\n<\/div>\n<div style=\"background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 18px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; min-height: 120px; box-sizing: border-box\">\n<div style=\"font-size: 12px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #E3EEFA\">Her check-in<\/div>\n<div style=\"font-size: 18px; font-weight: 600; line-height: 1.25\">\"Feeling great today\"<\/div>\n<div style=\"font-size: 13px; color: #E3EEFA\">1 hour ago<\/div>\n<\/div>\n<\/div>\n\n<div style=\"margin-top: auto; margin-left: -16px; margin-right: -16px; background: rgba(14, 40, 76, 0.55); border-top: 1px solid rgba(255, 255, 255, 0.14); padding: 10px 16px 28px 16px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr))\">\n<button style=\"min-height: 48px; background: none; border: none; color: #FFFFFF; font-size: 12px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4\"><\/circle><path d=\"M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4\"><\/path><\/svg>Today<\/button>\n<a href=\"Calendar.dc.html\" style=\"min-height: 48px; text-decoration: none; color: #C9DBF0; font-size: 12px; font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"><\/rect><line x1=\"16\" y1=\"2\" x2=\"16\" y2=\"6\"><\/line><line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"6\"><\/line><line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"><\/line><\/svg>Calendar<\/a>\n<a href=\"Ideas.dc.html\" style=\"min-height: 48px; text-decoration: none; color: #C9DBF0; font-size: 12px; font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z\"><\/path><\/svg>Ideas<\/a>\n<\/div>\n\n<\/div>"}, {"id": "SunnyBrief", "letter": "E", "name": "Field brief", "blurb": "Olive, monospace daily briefing", "html": "<div style=\"width: 390px; height: 844px; box-sizing: border-box; background: #1F2219; padding: 54px 18px 0 18px; display: flex; flex-direction: column; gap: 14px; font-family: 'JetBrains Mono', monospace; color: #E6DCC2\">\n\n<div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #4A503C; padding-bottom: 10px\">\n<div style=\"display: flex; flex-direction: column; gap: 2px\">\n<div style=\"font-size: 12px; font-weight: 700; letter-spacing: 1px\">SHE'S RIGHT // DAILY BRIEF<\/div>\n<div style=\"font-size: 12px; color: #A39A82\">TUE 13 OCT \u00b7 07:00<\/div>\n<\/div>\n<button aria-label=\"Settings\" style=\"width: 44px; height: 44px; background: #2A2E22; border: 1px solid #4A503C; border-radius: 4px; color: #E6DCC2; display: flex; align-items: center; justify-content: center; cursor: pointer\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\" aria-hidden=\"true\"><line x1=\"4\" y1=\"7\" x2=\"20\" y2=\"7\"><\/line><line x1=\"4\" y1=\"12\" x2=\"20\" y2=\"12\"><\/line><line x1=\"4\" y1=\"17\" x2=\"20\" y2=\"17\"><\/line><\/svg><\/button>\n<\/div>\n\n<div style=\"display: flex; justify-content: space-between; align-items: flex-end\">\n<div style=\"display: flex; flex-direction: column; gap: 6px\">\n<div style=\"display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: #E8C547\"><div style=\"width: 8px; height: 8px; background: #E8C547\"><\/div>CONDITIONS<\/div>\n<div style=\"font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 72px; line-height: 0.85; text-transform: uppercase; color: #F2EAD3\">Clear<br>skies<\/div>\n<\/div>\n<svg width=\"78\" height=\"78\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#E8C547\" stroke-width=\"1.3\" stroke-linecap=\"square\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4.5\"><\/circle><circle cx=\"12\" cy=\"12\" r=\"8\" stroke-dasharray=\"1.5 2\"><\/circle><path d=\"M12 1v2M12 21v2M1 12h2M21 12h2\"><\/path><\/svg>\n<\/div>\n\n<div style=\"display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid #4A503C\">\n<div style=\"padding: 10px 12px; border-right: 1px solid #4A503C; border-bottom: 1px solid #4A503C; display: flex; flex-direction: column; gap: 4px\"><div style=\"font-size: 11px; color: #A39A82\">PHASE<\/div><div style=\"font-size: 15px; font-weight: 700\">FOLLICULAR<\/div><\/div>\n<div style=\"padding: 10px 12px; border-bottom: 1px solid #4A503C; display: flex; flex-direction: column; gap: 4px\"><div style=\"font-size: 11px; color: #A39A82\">CYCLE DAY<\/div><div style=\"font-size: 15px; font-weight: 700\">10 / 28<\/div><\/div>\n<div style=\"padding: 10px 12px; border-right: 1px solid #4A503C; display: flex; flex-direction: column; gap: 4px\"><div style=\"font-size: 11px; color: #A39A82\">ENERGY<\/div><div style=\"font-size: 15px; font-weight: 700; color: #E8C547\">RISING<\/div><\/div>\n<div style=\"padding: 10px 12px; display: flex; flex-direction: column; gap: 4px\"><div style=\"font-size: 11px; color: #A39A82\">WINDOW<\/div><div style=\"font-size: 15px; font-weight: 700\">5 DAYS<\/div><\/div>\n<\/div>\n\n<div style=\"font-size: 13px; line-height: 1.6; color: #D3C9AE\">Estrogen is rising toward ovulation. Energy tends to peak. Good week to make plans or have the bigger conversation.<\/div>\n\n<div style=\"display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; font-size: 12px; text-align: center\">\n<div style=\"padding: 6px 0; color: #A39A82\">M<br><span style=\"color: #E8C547\">\u25cf<\/span><\/div>\n<div style=\"padding: 6px 0; background: #E8C547; color: #1F2219; font-weight: 700\">T<br>\u25cf<\/div>\n<div style=\"padding: 6px 0; color: #A39A82\">W<br><span style=\"color: #E8C547\">\u25cf<\/span><\/div>\n<div style=\"padding: 6px 0; color: #A39A82\">T<br><span style=\"color: #E8C547\">\u25cf<\/span><\/div>\n<div style=\"padding: 6px 0; color: #A39A82\">F<br><span style=\"color: #E8C547\">\u25cf<\/span><\/div>\n<div style=\"padding: 6px 0; color: #A39A82\">S<br><span style=\"color: #E8C547\">\u25cf<\/span><\/div>\n<div style=\"padding: 6px 0; color: #A39A82\">S<br><span style=\"color: #8A97A6\">\u25cb<\/span><\/div>\n<\/div>\n\n<div style=\"display: flex; flex-direction: column; gap: 0; border-top: 1px dashed #4A503C; border-bottom: 1px dashed #4A503C\">\n<div style=\"display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px dashed #4A503C\"><div style=\"font-size: 12px; font-weight: 700; color: #FF8A4C; width: 64px; flex-shrink: 0\">ORDERS<\/div><div style=\"font-size: 13px; line-height: 1.45\">Book date night for Friday.<\/div><\/div>\n<div style=\"display: flex; gap: 12px; padding: 10px 0\"><div style=\"font-size: 12px; font-weight: 700; color: #A9C98A; width: 64px; flex-shrink: 0\">INTEL<\/div><div style=\"font-size: 13px; line-height: 1.45\">\"Feeling great today.\" <span style=\"color: #A39A82\">1h ago<\/span><\/div><\/div>\n<\/div>\n\n<div style=\"display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px\">\n<button style=\"min-height: 52px; background: #E8C547; border: none; border-radius: 4px; color: #1F2219; font-size: 14px; font-weight: 700; cursor: pointer\">&gt; PLAN A DATE<\/button>\n<a href=\"CheatSheet.dc.html\" style=\"min-height: 52px; box-sizing: border-box; border: 1px solid #E6DCC2; border-radius: 4px; color: #E6DCC2; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; text-decoration: none\">CHEAT SHEET<\/a>\n<\/div>\n\n<div style=\"margin-top: auto; margin-left: -18px; margin-right: -18px; border-top: 1px solid #4A503C; background: #191C14; padding: 8px 18px 28px 18px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr))\">\n<button style=\"min-height: 44px; background: none; border: none; color: #E8C547; font-size: 12px; font-weight: 700; cursor: pointer\">[ TODAY ]<\/button>\n<a href=\"Calendar.dc.html\" style=\"min-height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #A39A82; font-size: 12px; font-weight: 700\">CALENDAR<\/a>\n<a href=\"Ideas.dc.html\" style=\"min-height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #A39A82; font-size: 12px; font-weight: 700\">IDEAS<\/a>\n<\/div>\n\n<\/div>"}];
+const byId = Object.fromEntries(DESIGNS.map(d => [d.id, d]));
+const byLetter = Object.fromEntries(DESIGNS.map(d => [d.letter, d]));
+let order = [];
+let modalId = null;
+
+const $ = id => document.getElementById(id);
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
+
+// Shuffle the display order once per visitor so position doesn't bias the vote.
+function shuffled(list) {
+  const saved = store.get("sr-vote-layout");
+  if (saved) {
+    const ids = saved.split(",");
+    if (ids.length === list.length && ids.every(id => byId[id])) return ids.map(id => byId[id]);
+  }
+  const a = list.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  store.set("sr-vote-layout", a.map(d => d.id).join(","));
+  return a;
+}
+
+function buildGrid() {
+  const grid = $("grid");
+  shuffled(DESIGNS).forEach(d => {
+    const card = document.createElement("article");
+    card.className = "card";
+    card.dataset.id = d.id;
+    card.innerHTML =
+      '<div class="frame"><div class="screen" inert>' + d.html + '</div>' +
+      '<button class="pick" type="button"></button><div class="hint">Tap to rank</div>' +
+      '<div class="rank" hidden></div></div>' +
+      '<div class="meta"><div class="letter"></div><div class="meta-text"><div class="name"></div><div class="blurb"></div></div>' +
+      '<button class="zoom" type="button">View larger</button></div>';
+    card.querySelector(".letter").textContent = d.letter;
+    card.querySelector(".name").textContent = d.name;
+    card.querySelector(".blurb").textContent = d.blurb;
+    card.querySelector(".pick").addEventListener("click", () => toggle(d.id));
+    card.querySelector(".zoom").addEventListener("click", () => openModal(d.id));
+    card.querySelector(".zoom").setAttribute("aria-label", "View " + d.name + " larger");
+    grid.appendChild(card);
+  });
+  const ro = new ResizeObserver(entries => {
+    for (const e of entries) {
+      const w = e.contentRect.width;
+      if (w > 0) e.target.style.setProperty("--s", (w / 390).toFixed(4));
+    }
+  });
+  document.querySelectorAll(".frame").forEach(f => ro.observe(f));
+}
+
+function toggle(id) {
+  const i = order.indexOf(id);
+  if (i >= 0) order.splice(i, 1); else if (order.length < DESIGNS.length) order.push(id);
+  render();
+}
+
+function code() { return "SR:" + order.map(id => byId[id].letter).join(""); }
+
+function resultText() {
+  const name = $("voterName").value.trim();
+  const note = $("voterNote").value.trim();
+  const lines = ["She's Right design vote" + (name ? " from " + name : "")];
+  order.forEach((id, i) => lines.push((i + 1) + ". " + byId[id].letter + " · " + byId[id].name));
+  if (note) lines.push("Note: " + note);
+  lines.push(code());
+  return lines.join("\n");
+}
+
+function render() {
+  document.querySelectorAll(".card").forEach(card => {
+    const id = card.dataset.id, d = byId[id], i = order.indexOf(id);
+    const badge = card.querySelector(".rank");
+    card.classList.toggle("ranked", i >= 0);
+    badge.hidden = i < 0;
+    badge.textContent = i >= 0 ? String(i + 1) : "";
+    const pick = card.querySelector(".pick");
+    pick.setAttribute("aria-pressed", i >= 0 ? "true" : "false");
+    pick.setAttribute("aria-label", i >= 0 ? d.name + ", ranked " + (i + 1) + ". Tap to remove." : "Rank " + d.name + (order.length < DESIGNS.length ? " number " + (order.length + 1) : ""));
+  });
+
+  const slots = $("slots");
+  slots.textContent = "";
+  for (let i = 0; i < DESIGNS.length; i++) {
+    const s = document.createElement("div");
+    s.className = "slot" + (order[i] ? " filled" : "");
+    s.textContent = order[i] ? byId[order[i]].letter : String(i + 1);
+    s.title = order[i] ? (i + 1) + ". " + byId[order[i]].name : "Place " + (i + 1);
+    slots.appendChild(s);
+  }
+  $("barText").innerHTML = "";
+  const strong = document.createElement("strong");
+  strong.textContent = order.length + " of " + DESIGNS.length;
+  $("barText").append(strong, " ranked");
+
+  const ol = $("order");
+  ol.textContent = "";
+  if (!order.length) {
+    const li = document.createElement("li");
+    li.className = "empty"; li.style.background = "transparent"; li.style.padding = "0";
+    li.textContent = "Nothing ranked yet. Tap your favorite screen first.";
+    ol.appendChild(li);
+  }
+  order.forEach((id, i) => {
+    const li = document.createElement("li");
+    const n = document.createElement("span"); n.className = "n"; n.textContent = String(i + 1);
+    const t = document.createElement("span"); t.textContent = byId[id].letter + " · " + byId[id].name;
+    li.append(n, t); ol.appendChild(li);
+  });
+
+  const done = order.length === DESIGNS.length;
+  $("copyBtn").disabled = !done;
+  $("copyStatus").textContent = done ? "Ready to send." : "Rank all six to finish (" + (DESIGNS.length - order.length) + " to go).";
+  $("resultText").hidden = !done;
+  $("sendHint").hidden = !done;
+  if (done) $("resultText").textContent = resultText();
+  store.set("sr-vote-order", order.join(","));
+
+  if (modalId) $("modalPick").textContent = order.includes(modalId) ? "Remove from ranking" : (done ? "All six ranked" : "Rank this #" + (order.length + 1));
+  if (modalId) $("modalPick").disabled = !order.includes(modalId) && done;
+}
+
+async function copyResult() {
+  const text = resultText();
+  $("resultText").textContent = text;
+  try {
+    await navigator.clipboard.writeText(text);
+    $("copyStatus").textContent = "Copied. Paste it in a message.";
+  } catch (e) {
+    const range = document.createRange();
+    range.selectNodeContents($("resultText"));
+    const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+    $("copyStatus").textContent = "Couldn't copy automatically. The text is selected, so copy it yourself.";
+  }
+}
+
+function openModal(id) {
+  modalId = id;
+  const d = byId[id];
+  const frame = $("modalFrame");
+  const maxH = Math.max(320, window.innerHeight - 140);
+  const maxW = Math.max(240, window.innerWidth - 32);
+  const s = Math.min(1, maxH / 844, maxW / 390);
+  frame.style.width = (390 * s) + "px";
+  frame.style.height = (844 * s) + "px";
+  frame.innerHTML = '<div class="screen" inert style="--s:' + s + '">' + d.html + '</div>';
+  $("modalTitle").textContent = d.letter + " · " + d.name;
+  $("modal").hidden = false;
+  render();
+  $("modalClose").focus();
+}
+function closeModal() { $("modal").hidden = true; modalId = null; }
+
+function countVotes() {
+  const raw = $("tallyInput").value;
+  const codes = [...raw.matchAll(/SR:([A-Z]{6})\b/g)].map(m => m[1]);
+  const valid = codes.filter(c => { const s = new Set(c.split("")); return s.size === 6 && [...s].every(l => byLetter[l]); });
+  if (!valid.length) {
+    $("tallyOut").hidden = true;
+    $("tallyStatus").textContent = codes.length ? "Those codes don't look right. Each should have all six letters once." : "No vote codes found. Each vote ends with a line like SR:DCOABE.";
+    return;
+  }
+  const stats = Object.fromEntries(DESIGNS.map(d => [d.letter, { pts: 0, places: 0, firsts: 0 }]));
+  valid.forEach(c => c.split("").forEach((l, i) => {
+    stats[l].pts += DESIGNS.length - i;
+    stats[l].places += i + 1;
+    if (i === 0) stats[l].firsts += 1;
+  }));
+  const rows = DESIGNS.map(d => ({ d, ...stats[d.letter] })).sort((a, b) => b.pts - a.pts || b.firsts - a.firsts);
+  const top = rows[0].pts || 1;
+  const body = $("tallyBody");
+  body.textContent = "";
+  rows.forEach(r => {
+    const tr = document.createElement("tr");
+    const name = document.createElement("td"); name.textContent = r.d.letter + " · " + r.d.name; name.style.fontWeight = "700";
+    const pts = document.createElement("td"); pts.className = "num"; pts.textContent = r.pts;
+    const avg = document.createElement("td"); avg.className = "num"; avg.textContent = (r.places / valid.length).toFixed(1);
+    const fst = document.createElement("td"); fst.className = "num"; fst.textContent = r.firsts;
+    const barTd = document.createElement("td");
+    const track = document.createElement("div"); track.className = "track";
+    const fill = document.createElement("div"); fill.className = "fill"; fill.style.width = (100 * r.pts / top).toFixed(1) + "%";
+    track.appendChild(fill); barTd.appendChild(track);
+    tr.append(name, pts, avg, fst, barTd); body.appendChild(tr);
+  });
+  $("tallyOut").hidden = false;
+  const skipped = codes.length - valid.length;
+  $("tallyStatus").textContent = valid.length + (valid.length === 1 ? " vote" : " votes") + " counted" + (skipped ? ", " + skipped + " skipped (incomplete code)" : "") + ".";
+}
+
+buildGrid();
+const savedOrder = (store.get("sr-vote-order") || "").split(",").filter(id => byId[id]);
+order = [...new Set(savedOrder)];
+render();
+
+$("resetBtn").addEventListener("click", () => { order = []; render(); });
+$("resetBtn2").addEventListener("click", () => { order = []; render(); window.scrollTo({ top: 0 }); });
+$("copyBtn").addEventListener("click", copyResult);
+$("voterName").addEventListener("input", () => { if (order.length === DESIGNS.length) $("resultText").textContent = resultText(); });
+$("voterNote").addEventListener("input", () => { if (order.length === DESIGNS.length) $("resultText").textContent = resultText(); });
+$("countBtn").addEventListener("click", countVotes);
+$("modalClose").addEventListener("click", closeModal);
+$("modalPick").addEventListener("click", () => { if (modalId) toggle(modalId); });
+$("modal").addEventListener("click", e => { if (e.target === $("modal")) closeModal(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("modal").hidden) closeModal(); });
+</script>
+
+</body>
+</html>
